@@ -1,14 +1,3 @@
-// fetch("data.json")
-//   .then(function (response) {
-//     return response.json();
-//   })
-//   .then(function (data) {
-//     appendData(data);
-//   })
-//   .catch(function (err) {
-//     console.log("error" + err);
-//   });
-
 // Fetch template
 // The fetch will return a promise.
 // The then will run the JSON data when it's fetched.
@@ -43,12 +32,41 @@ fetch("data.json")
 
 function appendData(data) {
   // Finds the div
-  let dataContainer = document.getElementById("dataDiv");
 
   // Appends the data to the page
   for (let i = 0; i < data.length; i++) {
-    let div = document.createElement("div");
-    div.innerHTML = data[i].title;
-    dataContainer.appendChild(div);
+    const dataCont = document.createElement("div");
+    dataCont.className = "container";
+
+    const bgCont = document.createElement("div");
+    bgCont.classList.add("bg", "image" + i);
+
+    const statsCont = document.createElement("div");
+    statsCont.className = "stats";
+
+    const titleCont = document.createElement("div");
+    titleCont.className = "title";
+    const timeCont = document.createElement("div");
+    timeCont.className = "time";
+
+    const dailyCurrent = document.createElement("p");
+    dailyCurrent.className = "dailyCurr";
+    const dailyPrevious = document.createElement("p");
+    dailyPrevious.className = "dailyCurr";
+
+    dailyPrevious.innerHTML = data[i].timeframes.daily.previous + "hrs";
+    dailyCurrent.innerHTML = data[i].timeframes.daily.current + " hrs";
+
+    titleCont.innerHTML = data[i].title;
+
+    document.body.appendChild(dataCont);
+    dataCont.appendChild(bgCont);
+    dataCont.appendChild(statsCont);
+    statsCont.appendChild(titleCont);
+    statsCont.appendChild(timeCont);
+    timeCont.appendChild(dailyCurrent);
+    timeCont.appendChild(dailyPrevious);
+
+    //dataContainer.appendChild(titleCont);
   }
 }
