@@ -46,9 +46,9 @@ function appendData(data) {
   let dataContainer = document.getElementById("dataDiv");
 
   // Appends the data to the page
-  for (let index = 0; index < data.length; index++) {
+  for (let i = 0; i < data.length; i++) {
     let div = document.createElement("div");
-    div.innerHTML = "Title" + data[i].title;
+    div.innerHTML = data[i].title;
     dataContainer.appendChild(div);
   }
 }
